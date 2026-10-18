@@ -10,7 +10,7 @@
 
 class YSN8900ERTC
 {
-  public:
+public:
     static constexpr uint8_t DEFAULT_ADDRESS = 0x32;
     static constexpr uint8_t CHIP_ID = 0xD2;
 
@@ -36,7 +36,7 @@ class YSN8900ERTC
     static bool decodeCalendar(const uint8_t buf[7], struct tm &t);
     static bool encodeCalendar(const struct tm &t, uint8_t buf[7]);
 
-  private:
+private:
     bool readRegs(uint8_t reg, uint8_t *buf, size_t len);
     bool writeRegs(uint8_t reg, const uint8_t *buf, size_t len);
 

@@ -6,28 +6,28 @@
 
 namespace
 {
-constexpr uint8_t REG_SECONDS = 0x00;
-constexpr uint8_t REG_EXTENSION = 0x0D;
-constexpr uint8_t REG_FLAG = 0x0E;
-constexpr uint8_t REG_CONTROL = 0x0F;
-constexpr uint8_t REG_CHIP_ID = 0x20;
+    constexpr uint8_t REG_SECONDS = 0x00;
+    constexpr uint8_t REG_EXTENSION = 0x0D;
+    constexpr uint8_t REG_FLAG = 0x0E;
+    constexpr uint8_t REG_CONTROL = 0x0F;
+    constexpr uint8_t REG_CHIP_ID = 0x20;
 
-constexpr uint8_t EXT_TE = 0x10;
-constexpr uint8_t FLAG_VLF = 0x02;
-constexpr uint8_t FLAG_VDET = 0x01;
-constexpr uint8_t CTRL_UIE = 0x20;
-constexpr uint8_t CTRL_TIE = 0x10;
-constexpr uint8_t CTRL_AIE = 0x08;
+    constexpr uint8_t EXT_TE = 0x10;
+    constexpr uint8_t FLAG_VLF = 0x02;
+    constexpr uint8_t FLAG_VDET = 0x01;
+    constexpr uint8_t CTRL_UIE = 0x20;
+    constexpr uint8_t CTRL_TIE = 0x10;
+    constexpr uint8_t CTRL_AIE = 0x08;
 
-uint8_t bcdToDec(uint8_t v)
-{
-    return (v >> 4) * 10 + (v & 0x0F);
-}
+    uint8_t bcdToDec(uint8_t v)
+    {
+        return (v >> 4) * 10 + (v & 0x0F);
+    }
 
-uint8_t decToBcd(uint8_t v)
-{
-    return ((v / 10) << 4) | (v % 10);
-}
+    uint8_t decToBcd(uint8_t v)
+    {
+        return ((v / 10) << 4) | (v % 10);
+    }
 } // namespace
 
 bool YSN8900ERTC::decodeCalendar(const uint8_t buf[7], struct tm &t)
@@ -37,7 +37,8 @@ bool YSN8900ERTC::decodeCalendar(const uint8_t buf[7], struct tm &t)
     if (wdayBits == 0)
         return false;
     int wday = 0;
-    while (!(wdayBits & 1)) {
+    while (!(wdayBits & 1))
+    {
         wdayBits >>= 1;
         wday++;
     }
@@ -77,7 +78,8 @@ bool YSN8900ERTC::begin(TwoWire &wire, uint8_t addr)
     _wire = &wire;
     _addr = addr;
     uint8_t id = 0;
-    if (!readRegs(REG_CHIP_ID, &id, 1) || id != CHIP_ID) {
+    if (!readRegs(REG_CHIP_ID, &id, 1) || id != CHIP_ID)
+    {
         _wire = nullptr;
         return false;
     }

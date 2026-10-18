@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Driver for the YXC YSN8900E real-time clock (Epson RX8900-compatible). Reads and writes the calendar as a struct tm and reports the VLF power-loss flag.",
   "keywords": "rtc, ysn8900e, rx8900, i2c, meshtastic",
-  "license": "MIT",
+  "license": "GPLv3",
   "frameworks": "arduino",
   "platforms": "*"
 }
